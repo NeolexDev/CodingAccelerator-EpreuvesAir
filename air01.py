@@ -1,33 +1,46 @@
+""" Créez un programme qui découpe une chaîne de caractères en tableau en fonction du séparateur donné en 2e argument """ 
 import sys
 
 def count_split(line , sep_string):
-  count = 1
+  count = 0
+  total = 1
   for c in line:
-    for c2 in sep_string:
-      if c == c2:
-        count += 1
-        break
-  return count
+    if c == sep_string[count]:
+      count += 1
+    else:
+      count = 0
+    if count == len(sep_string):
+      total+=1
+      count=0
+
+  return total
 
 def split(line , sep_string):
   array = ["" for i in range(count_split(line , sep_string))]
   index = 0
-  last_is_sep = False
-
+  count = 0
   for c in line:
-    found = False
-    for c2 in sep_string:
-      if c == c2:
-        if not last_is_sep:
-          index += 1
-          last_is_sep = True
-          continue
-    if not last_is_sep:
+    if c == sep_string[count]:
+      count+=1
+    else:
+      count = 0
+    if count == 0:
       array[index] += c
-    last_is_sep = False
+    if len(sep_string) == count:
+      count = 0
+      index+=1
   return array  
   
-if len(sys.argv) < 2:
-  print("usage: " + sys.argv[0] + " string")
-  sys.exit(1)
-print(split(sys.argv[1] , " \t\n"))
+
+def check_arguments(arguments, required_len):
+  return len(arguments) >= required_len
+
+
+def main():
+  args = sys.argv[1:]
+  if check_arguments(args,2):
+    print("\n".join(split(args[0],args[1])))
+  else:
+    print("Error: argument is needed")
+
+main()

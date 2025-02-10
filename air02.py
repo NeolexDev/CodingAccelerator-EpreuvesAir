@@ -1,36 +1,22 @@
+""" Créez un programme qui transforme un tableau de chaînes de caractères en une seule chaîne de caractères. Espacés d’un séparateur donné en dernier argument au programme. """ 
 import sys
 
-def count_split(line , sep_string):
-  count = 0
-  total = 1
-  for c in line:
-    if c == sep_string[count]:
-      count += 1
-    else:
-      count = 0
-    if count == len(sep_string):
-      total+=1
-      count=0
 
-  return total
+def join(strings , sep_string):
+  ret_str = ""
+  for string in strings:
+    ret_str += string + sep_string
+  return ret_str
 
-def split(line , sep_string):
-  array = ["" for i in range(count_split(line , sep_string))]
-  index = 0
-  count = 0
-  for c in line:
-    if c == sep_string[count]:
-      count+=1
-    else:
-      count = 0
-    if count == 0:
-      array[index] += c
-    if len(sep_string) == count:
-      count = 0
-      index+=1
-  return array  
-  
-if len(sys.argv) < 2:
-  print("usage: " + sys.argv[0] + "string separator")
-  sys.exit(1)
-print("\n".join(split(sys.argv[1] , sys.argv[2])))
+def check_arguments(arguments, required_len):
+  return len(arguments) >= required_len
+
+
+def main():
+  args = sys.argv[1:]
+  if check_arguments(args,2):
+    print(join(args[:-1],args[-1]))
+  else:
+    print("Error: argument is needed")
+
+main()
