@@ -32,7 +32,7 @@ function run_node_test(number,argument_string, expected_output){
     run_test(number,argument_string, expected_output,"node")
     
 }
-function run_python_tests(){
+function run_tests(){
     run_python_test(0,'"bonjour les gars"',"bonjour\nles\ngars\n")
     run_python_test(1,'"Crevette magique dans la mer des étoilles" "la"',"Crevette magique dans \n mer des étoiles\n")
     run_python_test(2,'"je" "teste" "des" "trucs" " "',"je teste des trucs \n")
@@ -48,9 +48,4 @@ function run_python_tests(){
     run_node_test(12,'6 5 4 3 2 1','1 2 3 4 5 6\n')
 }
 
- 
-function run_tests(){
-   run_python_tests();
- }
- 
  run_tests()
