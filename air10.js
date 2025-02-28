@@ -1,4 +1,5 @@
 /* Créez un programme qui affiche le contenu d’un fichier donné en argument. */
+
 const fs = require('node:fs');
 const process = require('process')
 
